@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f9d8a">
+<title>Kunjungan</title>
+<style>
+:root{--bg:#f4f6f8;--fg:#1b2430;--accent:#0f9d8a;--card:#fff;--shadow:rgba(0,0,0,.18)}
+@media (prefers-color-scheme:dark){:root{--bg:#10161d;--fg:#e8edf2;--accent:#22c3ad;--card:#1b2530;--shadow:rgba(0,0,0,.5)}}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);box-sizing:border-box}
+h1{font-size:1.1rem;font-weight:600;margin:0;opacity:.7;position:absolute;top:calc(env(safe-area-inset-top,0px) + 24px)}
+#btn{background:var(--accent);color:#fff;border:0;border-radius:50%;width:170px;height:170px;font-size:1.1rem;font-weight:600;cursor:pointer;box-shadow:0 10px 30px var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:transform .15s;-webkit-tap-highlight-color:transparent}
+#btn:active{transform:scale(.94)}
+#btn svg{width:44px;height:44px}
+#overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.35);z-index:10}
+#overlay.show{display:flex}
+#toast{background:var(--card);color:var(--fg);padding:28px 34px;border-radius:18px;text-align:center;box-shadow:0 14px 40px var(--shadow);max-width:80%;animation:pop .25s ease-out}
+#toast .ok{width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:28px}
+#toast b{display:block;font-size:1.15rem;margin-bottom:4px}
+@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<h1>Kunjungan</h1>
+<button id="btn" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+  Ambil Foto
+</button>
+<div id="overlay"><div id="toast"><div class="ok">✓</div><b>Done.</b>Kunjungan tersimpan</div></div>
+<script>
+const btn=document.getElementById('btn'),ov=document.getElementById('overlay');
+let t;
+btn.addEventListener('click',()=>{
+  ov.classList.add('show');
+  clearTimeout(t);
+  t=setTimeout(()=>ov.classList.remove('show'),2200);
+});
+ov.addEventListener('click',()=>ov.classList.remove('show'));
+</script>
+</body>
+</html>
